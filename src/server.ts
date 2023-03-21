@@ -7,7 +7,7 @@ import app from "./app.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({
-  path: path.join(__dirname, "..", `app.env`),
+  path: path.join(__dirname, "..", `.env`),
 });
 
 const { SERVER_HOST, SERVER_PORT } = process.env;

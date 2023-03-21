@@ -5,6 +5,7 @@
   "main": "./build/server.js",
   "type": "module",
   "scripts": {
+    "migrate-init": "npx prisma migrate dev --schema=db/schema.prisma --name init ",
     "build": "tsc",
     "start-dev": "node build/server.js",
     "start-prod": "pm2 start build/server. -i max -e logs/error -o logs/output",
@@ -20,9 +21,11 @@
     "@types/morgan": "^1.9.3",
     "@types/node": "^18.11.7",
     "nodemon": "^2.0.20",
+    "prisma": "^4.11.0",
     "typescript": "^4.8.4"
   },
   "dependencies": {
+    "@prisma/client": "^4.11.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",

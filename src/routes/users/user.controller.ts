@@ -1,16 +1,22 @@
 import { Request, Response, NextFunction } from "express";
+import { createUser } from "../../models/users/user.model.js";
 
-async function test(req: Request, res: Response, next: NextFunction) {
+export async function register(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
+    const user = await createUser(req.body);
+
     res.status(200).json({
       code: "0",
       msg: "成功",
-      data: {},
+      data: {
+        user,
+      },
     });
   } catch (err) {
-    console.error(err);
     next(err);
   }
 }
-
-export { test };
