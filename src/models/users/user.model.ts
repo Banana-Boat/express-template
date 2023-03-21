@@ -1,4 +1,4 @@
-import { User } from "./types";
+import { User } from "./types.js";
 
 /**
  * 创建用户

@@ -1,17 +1,19 @@
-import * as http from "http";
-import * as dotenv from "dotenv";
-import * as path from "path";
+import http from "http";
+import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
-import app from "./app";
+import app from "./app.js";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({
-  path: path.join(__dirname, "..", `.env.${process.env.NODE_ENV}`),
+  path: path.join(__dirname, "..", `app.env`),
 });
 
-const { PORT, DB_HOST, DB_PORT, DB_USER, DB_PSW, DB_NAME } = process.env;
+const { SERVER_HOST, SERVER_PORT } = process.env;
 
 const server = http.createServer(app);
 
-server.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}...`);
+server.listen(SERVER_PORT, () => {
+  console.log(`Server is running on http://${SERVER_HOST}:${SERVER_PORT}...`);
 });
