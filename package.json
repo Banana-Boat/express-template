@@ -5,12 +5,14 @@
   "main": "./build/server.js",
   "type": "module",
   "scripts": {
-    "migrate-init": "npx prisma migrate dev --schema=db/schema.prisma --name init ",
+    "migrate-dev-init": "prisma migrate dev --name init",
+    "prisma-gen": "prisma generate",
     "build": "tsc",
-    "start-dev": "node build/server.js",
-    "start-prod": "pm2 start build/server. -i max -e logs/error -o logs/output",
-    "restart": "rm -rf build && npm run build && npm run start-dev",
-    "dev": "nodemon --watch src --ext ts --exec npm run restart"
+    "dev": "NODE_ENV=development node build/server.js",
+    "restart": "rm -rf build && npm run build && npm run dev",
+    "start-dev": "nodemon --watch src --ext ts --exec npm run restart",
+    "migrate-prod": "prisma migrate deploy",
+    "start-prod": "NODE_ENV=production npm run migrate-prod && node build/server.js"
   },
   "keywords": [],
   "author": "",
@@ -21,8 +23,7 @@
     "@types/morgan": "^1.9.3",
     "@types/node": "^18.11.7",
     "nodemon": "^2.0.20",
-    "prisma": "^4.11.0",
-    "typescript": "^4.8.4"
+    "typescript": "^5.0.2"
   },
   "dependencies": {
     "@prisma/client": "^4.11.0",
@@ -30,6 +31,6 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
-    "pm2": "^5.2.2"
+    "prisma": "^4.11.0"
   }
 }

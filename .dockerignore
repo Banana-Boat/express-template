@@ -2,8 +2,5 @@
 node_modules
 build
 
-# migrations记录
-prisma/migrations
-
 # docker mysql数据
 db-data
