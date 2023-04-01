@@ -1,7 +1,7 @@
 # 使用 multi-stage 进行构建，进一步减小镜像大小
 
 # Build stage
-FROM node:16-alpine AS builder
+FROM node:18-alpine AS builder
 WORKDIR /app
 COPY . .
 RUN npm install
@@ -9,7 +9,7 @@ RUN npm install
 RUN npm run prisma-gen && npm run build
 
 # Run stage
-FROM node:16-alpine
+FROM node:18-alpine
 WORKDIR /app
 # <src> 是一个目录，则将目录下的所有文件写入<dest>中
 COPY --from=builder /app/build ./build
